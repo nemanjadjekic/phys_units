@@ -27,20 +27,21 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 namespace std::chrono {
 
 template <typename Rep, typename Period>
-constexpr std::chrono::duration<Rep, Period>
-duration_cast(const units::PhysicalUnit<Rep, Period, std::ratio<0>,
-                                        std::ratio<0>, std::ratio<1>> &val) {
-  return std::chrono::duration<Rep, Period>(val.value());
+constexpr std::chrono::duration<Rep, Period> duration_cast(
+    const units::
+        PhysicalUnit<Rep, Period, std::ratio<0>, std::ratio<0>, std::ratio<1>>
+            &val) {
+    return std::chrono::duration<Rep, Period>(val.value());
 }
 }; // namespace std::chrono
 
 namespace units {
 
 template <typename V, typename F>
-PhysicalUnit<V, F, std::ratio<0>, std::ratio<0>, std::ratio<1>>
-unit_cast(const std::chrono::duration<V, F> &val) {
-  return PhysicalUnit<V, F, std::ratio<0>, std::ratio<0>, std::ratio<1>>(
-      val.count());
+PhysicalUnit<V, F, std::ratio<0>, std::ratio<0>, std::ratio<1>> unit_cast(
+    const std::chrono::duration<V, F> &val) {
+    return PhysicalUnit<V, F, std::ratio<0>, std::ratio<0>, std::ratio<1>>(
+        val.count());
 }
 
 }; // namespace units

@@ -27,31 +27,31 @@ namespace std {
 template <intmax_t Number> struct num_sqrt {};
 
 template <> struct num_sqrt<0> {
-  static const intmax_t value = 0;
+    static const intmax_t value = 0;
 };
 
 template <> struct num_sqrt<1> {
-  static const intmax_t value = 1;
+    static const intmax_t value = 1;
 };
 
 template <> struct num_sqrt<100> {
-  static const intmax_t value = 10;
+    static const intmax_t value = 10;
 };
 
 template <> struct num_sqrt<360> {
-  static const intmax_t value = 60;
+    static const intmax_t value = 60;
 };
 
 template <> struct num_sqrt<10000> {
-  static const intmax_t value = 100;
+    static const intmax_t value = 100;
 };
 
 template <> struct num_sqrt<1000000> {
-  static const intmax_t value = 1000;
+    static const intmax_t value = 1000;
 };
 
 template <> struct num_sqrt<100000000> {
-  static const intmax_t value = 1000;
+    static const intmax_t value = 1000;
 };
 
 template <typename R>
@@ -59,37 +59,39 @@ using ratio_sqrt = ratio<num_sqrt<R::num>::value, num_sqrt<R::den>::value>;
 
 template <typename V, typename F, typename... Dims>
 auto sqrt(const units::PhysicalUnit<V, F, Dims...> &val)
-    -> units::PhysicalUnit<decltype(sqrt(val.value())), ratio_sqrt<F>,
+    -> units::PhysicalUnit<decltype(sqrt(val.value())),
+                           ratio_sqrt<F>,
                            ratio_divide<Dims, ratio<2>>...> {
-  return units::PhysicalUnit<decltype(sqrt(val.value())), ratio_sqrt<F>,
-                             ratio_divide<Dims, ratio<2>>...>(
-      sqrt(val.value()));
+    return units::PhysicalUnit<decltype(sqrt(val.value())),
+                               ratio_sqrt<F>,
+                               ratio_divide<Dims, ratio<2>>...>(
+        sqrt(val.value()));
 }
 
 template <intmax_t Number> struct num_cbrt {};
 
 template <> struct num_cbrt<0> {
-  static const intmax_t value = 0;
+    static const intmax_t value = 0;
 };
 
 template <> struct num_cbrt<1> {
-  static const intmax_t value = 1;
+    static const intmax_t value = 1;
 };
 
 template <> struct num_cbrt<8> {
-  static const intmax_t value = 2;
+    static const intmax_t value = 2;
 };
 
 template <> struct num_cbrt<27> {
-  static const intmax_t value = 3;
+    static const intmax_t value = 3;
 };
 
 template <> struct num_cbrt<1000> {
-  static const intmax_t value = 10;
+    static const intmax_t value = 10;
 };
 
 template <> struct num_cbrt<1000000> {
-  static const intmax_t value = 100;
+    static const intmax_t value = 100;
 };
 
 template <typename R>
@@ -97,11 +99,13 @@ using ratio_cbrt = ratio<num_cbrt<R::num>::value, num_cbrt<R::den>::value>;
 
 template <typename V, typename F, typename... Dims>
 auto cbrt(const units::PhysicalUnit<V, F, Dims...> &val)
-    -> units::PhysicalUnit<decltype(cbrt(val.value())), ratio_cbrt<F>,
+    -> units::PhysicalUnit<decltype(cbrt(val.value())),
+                           ratio_cbrt<F>,
                            ratio_divide<Dims, ratio<3>>...> {
-  return units::PhysicalUnit<decltype(cbrt(val.value())), ratio_cbrt<F>,
-                             ratio_divide<Dims, ratio<3>>...>(
-      cbrt(val.value()));
+    return units::PhysicalUnit<decltype(cbrt(val.value())),
+                               ratio_cbrt<F>,
+                               ratio_divide<Dims, ratio<3>>...>(
+        cbrt(val.value()));
 }
 
 }; // namespace std
